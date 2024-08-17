@@ -16,7 +16,7 @@
     --subheading-color: #828282;
     --placeholder-color: #e6dcdc;
     --primary-color: #323232;
-    --secondary-color: #383838;
+    --secondary-color: #4d4848;
     --secondary-hover-color: #323232;
 
 }
@@ -27,13 +27,14 @@ body{
 .header, .typing-area{
     color: var(--text-color)
 }
-.header, .typing-form{
+.header, .chat-list .message, .typing-form{
     max-width: 1000px;
     margin: 0 auto;
 }
 .header{
-    margin-top: 7vh; /* Üstten boşluk (margin) 7% olarak ayarlandı. Ekran yüksekliğine göre ayarlanır (vh = viewport height). */
+    /* margin-top: 7vh; /* Üstten boşluk (margin) 7% olarak ayarlandı. Ekran yüksekliğine göre ayarlanır (vh = viewport height). */
     padding:1rem ;
+    display: none;
 }
 .header :where(.title, .subtitle){
     font-weight:500;
@@ -94,6 +95,53 @@ body{
     border-radius:50% ;
     background: var(--primary-color);
 }
+.chat-list{
+    padding: 2rem 1rem 12rem;
+    max-height: 100vh;
+    overflow-y: auto;
+
+}
+.chat-list .message.incoming{
+    margin-top: 1.5rem;
+
+}
+.chat-list .message .message-content{
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    align-items: center;
+
+}
+.chat-list .message .avatar{
+    width: 40px;
+    height: 40px;
+    object-fit: cover; /*resim) belirli bir alanı dolduracak şekilde kesilir ve ölçeklendirilir. Bu, resmin width ve height değerlerine uyacak şekilde kesileceği ve içeriğin alanı tamamen kaplayacak şekilde ayarlanacağı anlamına gelir */
+    border-radius:50% ;
+    align-self: flex-start; /*  öğeyi konteynerin başlangıç noktasına hizalar */
+}
+.chat-list .message .text{
+    color: var(--text-color);
+}
+.chat-list .message .icon{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 3.5rem;
+    font-size: 1.25rem;
+    justify-content: center;
+    color: var(--text-color);
+    background: var(--secondary-color);
+    visibility: hidden;
+}
+.chat-list .message:hover .icon{
+    visibility:visible ;
+}
+.chat-list .message .icon:hover{
+    background: var(--secondary-color)
+}
+
 .typing-area{
     position: fixed;  
     /* `.typing-area` öğesi ekranda sabit bir konumda yer alır.
